@@ -1,0 +1,4 @@
+services:
+  better_date_range.formatter:
+    class: Drupal\better_date_range\DateRangeFormatter
+    arguments: ['@date.formatter']
