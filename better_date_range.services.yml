@@ -1,4 +1,3 @@
 services:
-  better_date_range.formatter:
-    class: Drupal\better_date_range\DateRangeFormatter
-    arguments: ['@date.formatter']
+  better_date_range.date_comparison:
+    class: Drupal\better_date_range\DateComparison

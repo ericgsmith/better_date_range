@@ -1,5 +1,7 @@
 name: Better Date Range
-description: Date range formatter supporting compat dates.
-package: Custom
+description: Date range formatter supporting smarter date display logic.
+package: Date
 type: module
 core: 8.x
+dependencies:
+- drupal:datetime_range
