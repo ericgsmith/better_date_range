@@ -12,13 +12,13 @@ use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
  *
  * @FieldFormatter(
  *   id = "daterange_custom_compact",
- *   label = @Translation("Compact date range custom format"),
+ *   label = @Translation("Custom compact date range"),
  *   field_types = {
  *     "daterange"
  *   }
  * )
  */
-class CompactCustomDateRangeFormatter extends AbstractCompactDateRangeFormatter {
+class CompactDateRangeCustomFormatter extends CompactDateRangeFormatterBase {
 
   /**
    * {@inheritdoc}
@@ -52,7 +52,7 @@ class CompactCustomDateRangeFormatter extends AbstractCompactDateRangeFormatter 
   /**
    * {@inheritdoc}
    */
-  protected function getEndFormatField($options) {
+  protected function getEndFormatField() {
     return [
       '#type' => 'textfield',
       '#title' => t('End date format'),

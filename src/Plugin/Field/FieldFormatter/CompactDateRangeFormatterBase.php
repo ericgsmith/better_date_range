@@ -18,7 +18,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * This formatter renders the data range using <time> elements, with
  * a date format for single and multiple dates.
  */
-abstract class AbstractCompactDateRangeFormatter extends DateTimeDefaultFormatter {
+abstract class CompactDateRangeFormatterBase extends DateTimeDefaultFormatter {
 
   // Settings.
   const SETTING_FORMAT_TYPE = 'format_type';

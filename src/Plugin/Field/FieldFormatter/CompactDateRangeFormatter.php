@@ -12,13 +12,13 @@ use Drupal\Core\Datetime\DrupalDateTime;
  *
  * @FieldFormatter(
  *   id = "daterange_compact",
- *   label = @Translation("Compact date range"),
+ *   label = @Translation("Default compact date range"),
  *   field_types = {
  *     "daterange"
  *   }
  * )
  */
-class CompactDateRangeFormatter extends AbstractCompactDateRangeFormatter {
+class CompactDateRangeFormatter extends CompactDateRangeFormatterBase {
 
   /**
    * List of stored date formats.
