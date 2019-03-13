@@ -8,7 +8,7 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
 /**
  * Service to format date ranges.
  */
-class DateComparison {
+class DateComparison implements DateComparisonInterface {
 
   use StringTranslationTrait;
 
@@ -40,15 +40,7 @@ class DateComparison {
   ];
 
   /**
-   * Compare dates to get their comparison type.
-   *
-   * @param \Drupal\Core\Datetime\DrupalDateTime $startDate
-   *   Start date.
-   * @param \Drupal\Core\Datetime\DrupalDateTime $endDate
-   *   End date.
-   *
-   * @return string
-   *  self::COMPARISON_ type to indicate the comparison match.
+   * (@inheritdoc)
    */
   public function compareDates(DrupalDateTime $startDate, DrupalDateTime $endDate) {
     foreach ($this->comparisonMethodResultMap as $method => $code) {
@@ -61,10 +53,7 @@ class DateComparison {
   }
 
   /**
-   * Get the types of comparison results available.
-   *
-   * @return array
-   *  self::COMPARISON_
+   * (@inheritdoc)
    */
   public function getComparisonTypes() {
     return  [
@@ -78,13 +67,7 @@ class DateComparison {
   }
 
   /**
-   * Get the label for a comparison type.
-   *
-   * @param string $comparisonType
-   *  self::COMPARISON_ type to indicate the comparison match.
-   *
-   * @return string
-   *   Label for the comparison.
+   * (@inheritdoc)
    */
   public function getComparisonTypeLabel($comparisonType) {
     $comparisonLabels = [

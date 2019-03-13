@@ -18,7 +18,7 @@ use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
  *   }
  * )
  */
-class CompactCustomDateRangeFormatter extends CompactDateRangeFormatter {
+class CompactCustomDateRangeFormatter extends AbstractCompactDateRangeFormatter {
 
   /**
    * {@inheritdoc}
@@ -40,39 +40,46 @@ class CompactCustomDateRangeFormatter extends CompactDateRangeFormatter {
 
   /**
    * {@inheritdoc}
-   *
-   * @param string $custom_format
    */
-  protected function formatDate($date, $custom_format = DateTimeItemInterface::DATE_STORAGE_FORMAT) {
-    /** @var \Drupal\Core\Datetime\DrupalDateTime $date */
-    $timezone = $this->getSetting(self::SETTING_TIMEZONE_OVERRIDE) ?: $date->getTimezone()->getName();
-    return $this->dateFormatter->format($date->getTimestamp(), 'custom', $custom_format, $timezone !== '' ? $timezone : NULL);
-  }
-
-
-  /**
-   * @param $options
-   *
-   * @return array
-   */
-  protected function getStartFormatField($options) {
+  protected function getStartFormatField() {
     return [
       '#type' => 'textfield',
       '#title' => t('Start date format'),
-      '#description' => $this->t('See <a href="http://php.net/manual/function.date.php" target="_blank">the documentation for PHP date formats</a>.'),
+      '#description' => $this->getDateFormatHelpText(),
     ];
   }
 
   /**
-   * @param $options
-   *
-   * @return array
+   * {@inheritdoc}
    */
   protected function getEndFormatField($options) {
     return [
       '#type' => 'textfield',
       '#title' => t('End date format'),
-      '#description' => $this->t('See <a href="http://php.net/manual/function.date.php" target="_blank">the documentation for PHP date formats</a>.'),
+      '#description' => $this->getDateFormatHelpText(),
     ];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function getFormatterType($format) {
+    return 'custom';
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function getFormatterFormat($format) {
+    return $format;
+  }
+
+  /**
+   * Get the help text for the format fields.
+   *
+   * @return \Drupal\Core\StringTranslation\TranslatableMarkup
+   */
+  private function getDateFormatHelpText() {
+    return $this->t('See <a href="http://php.net/manual/function.date.php" target="_blank">the documentation for PHP date formats</a>.');
   }
 }
